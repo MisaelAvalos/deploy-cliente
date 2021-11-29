@@ -12,7 +12,7 @@ function App() {
 
 //Funcion para guardar los datos del formulario desde el frontend al backend
 const addFriend = () => {
-  Axios.post("https://dashboard.heroku.com/apps/practicaits/addFriend", {
+  Axios.post("https://practicaits.herokuapp.com/addFriend", {
     name : name,
     age : age,
     description : description
@@ -31,7 +31,7 @@ const updateFriend = (id) => {
   const newAge = prompt("Ingresa nueva edad: ");
   const newDescription = prompt("Ingresa nueva descripción: ");
 
-  Axios.put("https://dashboard.heroku.com/apps/practicaits/update", { newAge: newAge, newDescription : newDescription, id : id}).then(() => {
+  Axios.put("https://practicaits.herokuapp.com//update", { newAge: newAge, newDescription : newDescription, id : id}).then(() => {
     alert('Datos Actualizados! Success! =D');
     setListOfFriends(ListOfFriends.map((val) =>{
       return val._id ===id
@@ -45,7 +45,7 @@ const updateFriend = (id) => {
 
 //Funcion para borrar datos desde el frontend al backend
 const deleteFriend = (id) =>{
-  Axios.delete(`https://dashboard.heroku.com/apps/practicaits/delete/${id}`).then(()=>{
+  Axios.delete(`https://practicaits.herokuapp.com/delete/${id}`).then(()=>{
       alert('Datos eliminados');
       setListOfFriends(ListOfFriends.filter((val)=>{
           return val._id !== id;
@@ -58,7 +58,7 @@ const deleteFriend = (id) =>{
   //Funcion para cargar los datos desde el backend al frontend
   //useEffect es una funcion que se ejecuta al cargar la App
   useEffect(() => {
-    Axios.get("https://dashboard.heroku.com/apps/practicaits/read")
+    Axios.get("https://practicaits.herokuapp.com/read")
     .then((response) => {
       setListOfFriends(response.data);
     }).catch(() => {
